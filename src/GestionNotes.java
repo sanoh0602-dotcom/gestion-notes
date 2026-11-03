@@ -8,6 +8,13 @@ public class GestionNotes {
         System.out.println("=================================");
 
 
+        final double POIDS_DEVOIR = 0.4;
+        final double POIDS_EXAMEN = 0.6;
+        final int COEF_ALGO = 3;
+        final int COEF_BD = 2;
+        final int COEF_ANGLAIS = 1;
+
+
         Scanner clavier = new Scanner(System.in);
 
         System.out.print("Entrez le prénom : ");
@@ -19,16 +26,13 @@ public class GestionNotes {
         System.out.print("Entrez l'âge : ");
         int age = clavier.nextInt();
 
-        // on consomme le saut de ligne restant après nextInt()
-        clavier.nextLine();
+        clavier.nextLine(); // Consommer le saut de ligne
 
         System.out.print("Entrez le matricule : ");
         String matricule = clavier.nextLine();
 
-        // Fermeture du Scanner
         clavier.close();
 
-        // affichage
         System.out.println("\nÉtudiant : " + prenom + " " + nom + " (" + age + " ans)");
         System.out.println("Matricule : " + matricule);
     }
