@@ -3,11 +3,12 @@ import java.util.Scanner;
 public class GestionNotes {
     public static void main(String[] args) {
 
+        // ÉTAPE 1 : L'en-tête
         System.out.println("=================================");
         System.out.println("   RELEVE DE NOTES - L2          ");
         System.out.println("=================================");
 
-        // Constantes
+        //  ÉTAPE 4 : Constantes du calcul
         final double POIDS_DEVOIR = 0.4;
         final double POIDS_EXAMEN = 0.6;
         final int COEF_ALGO = 3;
@@ -16,7 +17,7 @@ public class GestionNotes {
 
         Scanner clavier = new Scanner(System.in);
 
-        // Identité
+        // ÉTAPE 3 : Saisie de l'identité
         System.out.print("Entrez le prénom : ");
         String prenom = clavier.nextLine();
 
@@ -25,13 +26,12 @@ public class GestionNotes {
 
         System.out.print("Entrez l'âge : ");
         int age = clavier.nextInt();
-
         clavier.nextLine(); // Consommer le saut de ligne
 
         System.out.print("Entrez le matricule : ");
         String matricule = clavier.nextLine();
 
-        // --- Notes des 3 matières
+        // ÉTAPE 5 : Saisie des 6 notes
         System.out.print("Devoir Algorithmique : ");
         double devoirAlgo = clavier.nextDouble();
         System.out.print("Examen Algorithmique : ");
@@ -47,25 +47,31 @@ public class GestionNotes {
         System.out.print("Examen Anglais : ");
         double examenAnglais = clavier.nextDouble();
 
+        // Fermeture du Scanner tout à la fin des saisies
         clavier.close();
 
-        //  Calcul des moyennes par matière
+        //  ÉTAPE 5 : Calcul des moyennes par matière
         double moyenneAlgo = (devoirAlgo * POIDS_DEVOIR) + (examenAlgo * POIDS_EXAMEN);
         double moyenneBd = (devoirBd * POIDS_DEVOIR) + (examenBd * POIDS_EXAMEN);
         double moyenneAnglais = (devoirAnglais * POIDS_DEVOIR) + (examenAnglais * POIDS_EXAMEN);
 
-        // Calcul de la somme des coefficients et de la moyenne générale
+        // ÉTAPE 6 : Calcul de la moyenne générale
         int sommeCoefs = COEF_ALGO + COEF_BD + COEF_ANGLAIS;
-
-        // Attention aux parenthèses globales pour additionner les produits avant de diviser !
-
         double moyenneGenerale = ((moyenneAlgo * COEF_ALGO) + (moyenneBd * COEF_BD) + (moyenneAnglais * COEF_ANGLAIS)) / sommeCoefs;
 
-        // Affichage
+        // ÉTAPE 7 : Affichage final formaté
         System.out.println("\nÉtudiant : " + prenom + " " + nom + " (" + age + " ans)");
         System.out.println("Matricule : " + matricule);
+        System.out.println("--------------------------------------");
 
-        // Affichage brut mis à jour avec la moyenne générale
-        System.out.println("Brut : " + moyenneAlgo + " | " + moyenneBd + " | " + moyenneAnglais + " | " + moyenneGenerale);
+        // Utilisation de printf pour formter proprement les notes à 2 décimales
+
+        System.out.printf("Algorithmique      (coef %d) : %.2f%n", COEF_ALGO, moyenneAlgo);
+        System.out.printf("Base de données    (coef %d) : %.2f%n", COEF_BD, moyenneBd);
+        System.out.printf("Anglais            (coef %d) : %.2f%n", COEF_ANGLAIS, moyenneAnglais);
+
+        System.out.println("--------------------------------------");
+        System.out.printf("Moyenne générale            : %.2f%n", moyenneGenerale);
+        System.out.println("======================================");
     }
 }
